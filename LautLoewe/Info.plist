@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>Laut Löwe</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>marwen.doukh.LautLoewe</string>
+	<key>CFBundleName</key>
+	<string>Laut Löwe</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Wir benötigen Zugriff auf das Mikrofon für die Spracherkennung.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Wir verwenden Spracherkennung, um deine Aussprache zu überprüfen.</string>
+	<key>UIBackgroundModes</key>
+	<array/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+
+</dict>
+</plist>
