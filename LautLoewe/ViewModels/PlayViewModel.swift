@@ -15,12 +15,12 @@ class PlayScreenViewModel: ObservableObject {
     private let wordProvider: WordProvidable
     private let speechEngine: SpeechEngineProvidable
     private var recordingTimer: AnyCancellable?
-
+    
     init(wordProvider: WordProvidable, speechEngine: SpeechEngineProvidable) {
         self.wordProvider = wordProvider
         self.speechEngine = speechEngine
     }
-  
+    
     func onAppear() {
         self.speechEngine.requestPermissions()
         self.newWord()
@@ -32,7 +32,7 @@ class PlayScreenViewModel: ObservableObject {
     
     func startRecording() {
         self.state.isRecording = true
-
+        
         self.speechEngine.startRecording()
         
         // Start timer to automatically stop recording after 1 second
@@ -43,14 +43,14 @@ class PlayScreenViewModel: ObservableObject {
                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     self.stopRecording()
-
+                    
                 }
             }
     }
     
     func stopRecording() {
         self.state.isRecording = false
-
+        
         self.speechEngine.stopRecording()
         self.checkRecognizedWord()
         
@@ -61,13 +61,14 @@ class PlayScreenViewModel: ObservableObject {
     private func checkRecognizedWord() {
         guard let currentWord = self.state.currentWord?.text.lowercased(),
               let recognizedWord = self.speechEngine.recognizedText.lowercased()
-                .components(separatedBy: .whitespacesAndNewlines)
-                .first
+            .components(separatedBy: .whitespacesAndNewlines)
+            .first
         else { return }
         
         debugPrint("recognized Word: \(recognizedWord)")
+        self.state.isRightAnswer = currentWord == recognizedWord
         if currentWord == recognizedWord {
-            self.state.showReward = true
+            self.state.score += 1
         }
     }
     
@@ -76,15 +77,12 @@ class PlayScreenViewModel: ObservableObject {
             self.speechEngine.playWord(word)
         }
     }
-
     
-    func showReward() {
-        self.state.showReward = true
-    }
-    
-    func onRewardConfirmed() {
-        self.state.score += 1
-        self.state.showReward = false
-        self.newWord()
+    func resetAnswer() {
+        let previousAnswer = self.state.isRightAnswer
+        self.state.isRightAnswer = nil
+        if previousAnswer == true {
+            self.newWord()
+        }
     }
 }
