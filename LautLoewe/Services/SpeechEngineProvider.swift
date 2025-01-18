@@ -101,8 +101,9 @@ class SpeechEngineProvider: NSObject, SpeechEngineProvidable, SFSpeechRecognizer
     func playWord(_ word: String) {
         let utterance = AVSpeechUtterance(string: word)
         utterance.voice = AVSpeechSynthesisVoice(language: "de-AT")
-        utterance.rate = 0.5
-        utterance.volume = 1.0
+        utterance.rate = 0.42
+        utterance.volume = 0.9
+        utterance.pitchMultiplier = 1.1
         self.speechSynthesizer.speak(utterance)
     }
 }
