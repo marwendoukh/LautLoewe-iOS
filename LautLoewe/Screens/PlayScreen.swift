@@ -63,5 +63,5 @@ struct PlayScreen: View {
 
 #Preview {
     PlayScreen(viewModel: PlayScreenViewModel(wordProvider: WordProvider(),
-                                              speechEngine: SpeechEngineProvider()))
+                                              speechEngine: SpeechEngineProvider.shared))
 }

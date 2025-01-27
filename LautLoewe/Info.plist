@@ -29,10 +29,14 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-    <key>CFBundleVersion</key>
-    <string>1</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
-
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+    <key>UIAppFonts</key>
+    <array>
+        <string>schulsch_02R.ttf</string>
+        <string>schuldruck_02.ttf</string>
+    </array>
 </dict>
 </plist>

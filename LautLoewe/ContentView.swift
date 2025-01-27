@@ -10,10 +10,25 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        NavigationStack {
-            PlayScreen(viewModel: PlayScreenViewModel(wordProvider: WordProvider(),
-                                                      speechEngine: SpeechEngineProvider()))
+        TabView {
+            
+            NavigationStack {
+                LettersScreen()
+            }
+            .tabItem {
+                Label("Buchstaben", systemImage: "translate")
+            }
+            
+            NavigationStack {
+                PlayScreen(viewModel: PlayScreenViewModel(wordProvider: WordProvider(),
+                                                          speechEngine: SpeechEngineProvider.shared))
+            }
+            .tabItem {
+                Label("Spiel", systemImage: "play.circle.fill")
+            }
+            
         }
+        
     }
 }
 

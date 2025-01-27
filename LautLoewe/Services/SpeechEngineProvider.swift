@@ -15,9 +15,16 @@ class SpeechEngineProvider: NSObject, SpeechEngineProvidable, SFSpeechRecognizer
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
+    private var audioPlayer: AVAudioPlayer?
     
     @Published private(set) var recognizedText: String = ""
     @Published private(set) var isRecording: Bool = false
+    
+    static let shared = SpeechEngineProvider()
+    
+    private override init() {
+        super.init()
+    }
     
     func requestPermissions() {
         SFSpeechRecognizer.requestAuthorization { [weak self] status in
@@ -106,4 +113,21 @@ class SpeechEngineProvider: NSObject, SpeechEngineProvidable, SFSpeechRecognizer
         utterance.pitchMultiplier = 1.1
         self.speechSynthesizer.speak(utterance)
     }
+    
+    func speakLetter(_ letter: String) {
+        guard let soundURL = Bundle.main.url(forResource: letter, withExtension: "mp3") else {
+            print("Sound file not found")
+            return
+        }
+        
+        do {
+            self.audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+            self.audioPlayer?.prepareToPlay()
+            self.audioPlayer?.play()
+            print("Playing \(letter).mp3...")
+        } catch let error {
+            print("Error playing sound: \(error.localizedDescription)")
+        }
+    }
+    
 }

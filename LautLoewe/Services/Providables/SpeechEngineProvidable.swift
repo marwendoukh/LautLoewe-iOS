@@ -12,4 +12,5 @@ protocol SpeechEngineProvidable {
     func playWord(_ word: String)
     var recognizedText: String { get }
     var isRecording: Bool { get }
+    func speakLetter(_ letter: String)
 }
