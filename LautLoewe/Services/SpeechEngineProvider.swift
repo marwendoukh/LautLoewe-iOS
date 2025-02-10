@@ -115,7 +115,7 @@ class SpeechEngineProvider: NSObject, SpeechEngineProvidable, SFSpeechRecognizer
     }
     
     func speakLetter(_ letter: String) {
-        guard let soundURL = Bundle.main.url(forResource: letter, withExtension: "mp3") else {
+        guard let soundURL = Bundle.main.url(forResource: letter, withExtension: "m4a") else {
             print("Sound file not found")
             return
         }
@@ -124,7 +124,7 @@ class SpeechEngineProvider: NSObject, SpeechEngineProvidable, SFSpeechRecognizer
             self.audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
             self.audioPlayer?.prepareToPlay()
             self.audioPlayer?.play()
-            print("Playing \(letter).mp3...")
+            print("Playing \(letter).m4a...")
         } catch let error {
             print("Error playing sound: \(error.localizedDescription)")
         }
